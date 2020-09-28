@@ -1,8 +1,3 @@
-/* ho pensato così: 
- * assegno i = 1. Se (numInput / i) é numero intero  allora (i) ed il quoziente sono divisori del 
- * numero input. Li salvo in un array, incremento il numero (i) e assegno a DivLim il valore del 
- * quoziente. Ripeto la procedura finchè (i < DivLim).*/
-
 
 import java.util.*;
 
@@ -10,19 +5,19 @@ public class Divisori {
 	
 	public static void main(String[] args){
 		int i = 1;   
-		int j = 2;  // conta il numero di divisori
+		int j = 2;  // conta il numero di divisori........... SERVE?
 		int DivLim, input;
-		ArrayList<Integer> divisori = new ArrayList<Integer>(); // creo un ArrayList di interi perché voglio i divisori ordinati
+		ArrayList<Integer> divisori = new ArrayList<Integer>(); // creo un ArrayList di interi perchÃ© voglio i divisori ordinati
 		
 		System.out.println("Inserisci il numero: ");
 		Scanner reader = new Scanner(System.in);
 		input = reader.nextInt();
-		DivLim = input;
+		DivLim = input; // un po' inutile?
 		
-		while(i < DivLim){
+		while(i < DivLim){  //non funziona per 0 e per 1
 			if(input % i == 0){
 				DivLim = input / i;
-				divisori.add(divisori.size() / 2, i);
+				divisori.add(divisori.size() / 2, i);                     //super difficile e non mi sembra funzionare, meglio divisori.add(input);
 				divisori.add((divisori.size() / 2) + 1, DivLim);
 				j = j + 2;
 				i++;
@@ -32,10 +27,19 @@ public class Divisori {
 			}
 		}
 		
+		
+		/** piÃ¹ easy
+		for(i=1; i<=input; i++) {
+			if(input % i == 0){
+				divisori.add(i);
+			}
+		}
+		**/
+		
 		for(i = 0; i < divisori.size(); i++){
 		      System.out.print(divisori.get(i) + " ");
 		}
-		System.out.println("    Numero di divisori: " + j);
+		System.out.println("    Numero di divisori: " + j);  //inutile, se facciamo add di input, basta stampare divisori.size()
 		
 		
 	}
